@@ -1,0 +1,73 @@
+# CargoConnect Spring Boot Configuration - MySQL 8.x + JPA
+server:
+  port: ${PORT:8080}
+  error:
+    include-message: always
+    include-binding-errors: always
+
+spring:
+  jackson:
+    deserialization:
+      fail-on-null-for-primitives: false
+      fail-on-unknown-properties: false
+
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:${DATABASE_URL:jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:cargoconnect}?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC}}
+    username: ${SPRING_DATASOURCE_USERNAME:${DB_USERNAME:root}}
+    password: ${SPRING_DATASOURCE_PASSWORD:${DB_PASSWORD:Ritesh@0807}}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+      idle-timeout: 30000
+      max-lifetime: 2000000
+      connection-timeout: 30000
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+        dialect: org.hibernate.dialect.MySQLDialect
+    open-in-view: false
+
+  mail:
+    host: ${MAIL_HOST:${SPRING_MAIL_HOST:smtp.gmail.com}}
+    port: ${MAIL_PORT:${SPRING_MAIL_PORT:587}}
+    username: ${MAIL_USERNAME:${SPRING_MAIL_USERNAME:kengarritesh3@gmail.com}}
+    password: ${MAIL_PASSWORD:${SPRING_MAIL_PASSWORD:yvoceecujwaptmzz}}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+          ssl:
+            trust: smtp.gmail.com
+
+# Custom Security JWT & Application Configuration
+cargoconnect:
+  jwt:
+    secret: ${JWT_SECRET:5367566B59703373367639792F423F4528482B4D6251655468576D5A71347437}
+    expiration: 86400000 # 24 hours in milliseconds
+  support:
+    phone: "+91 98220 11223"
+    email: "support@cargoconnect.com"
+  app:
+    client-url: ${FRONTEND_URL:http://localhost:5173}
+
+razorpay:
+  key:
+    id: ${RAZORPAY_KEY_ID:rzp_test_TYHJ7KO4FMfsNu}
+    secret: ${RAZORPAY_KEY_SECRET:j0rKh9oAMGCOobGdaWFfg5AW}
+  webhook:
+    secret: ${RAZORPAY_WEBHOOK_SECRET:rzp_test_WebhookSecret123}
+
+logging:
+  level:
+    com.cargoconnect: INFO
+    org.hibernate.SQL: WARN
+    org.springframework.security: WARN

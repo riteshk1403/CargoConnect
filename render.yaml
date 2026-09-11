@@ -1,0 +1,43 @@
+﻿services:
+  # 1. CargoConnect Spring Boot Backend Service
+  - type: web
+    name: cargoconnect-backend
+    runtime: docker
+    dockerfilePath: backend/Dockerfile
+    dockerContext: backend
+    plan: free
+    region: oregon
+    healthCheckPath: /api/health
+    envVars:
+      - key: PORT
+        value: 8080
+      - key: DB_HOST
+        sync: false
+      - key: DB_PORT
+        value: 3306
+      - key: DB_NAME
+        value: cargoconnect
+      - key: DB_USERNAME
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: SPRING_DATASOURCE_URL
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: FRONTEND_URL
+        sync: false
+      - key: RAZORPAY_KEY_ID
+        sync: false
+      - key: RAZORPAY_KEY_SECRET
+        sync: false
+      - key: RAZORPAY_WEBHOOK_SECRET
+        sync: false
+      - key: MAIL_HOST
+        value: smtp.gmail.com
+      - key: MAIL_PORT
+        value: 587
+      - key: MAIL_USERNAME
+        sync: false
+      - key: MAIL_PASSWORD
+        sync: false
