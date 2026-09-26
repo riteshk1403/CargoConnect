@@ -1,9 +1,9 @@
 package com.cargoconnect.controller;
 
 import com.cargoconnect.dto.ApiResponse;
-import com.cargoconnect.entity.Booking;
-import com.cargoconnect.entity.BookingStatus;
-import com.cargoconnect.service.BookingService;
+import com.cargoconnect.model.Shipment;
+import com.cargoconnect.repository.ShipmentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,38 +16,49 @@ import java.util.Map;
 @RequestMapping("/api")
 public class TrackingController {
 
-    private final BookingService bookingService;
+    @Autowired
+    private ShipmentRepository shipmentRepository;
 
-    public TrackingController(BookingService bookingService) {
-        this.bookingService = bookingService;
-    }
+    @GetMapping("/tracking/{shipmentIdentifier}")
+    public ResponseEntity<ApiResponse> getTracking(@PathVariable String shipmentIdentifier) {
+        Shipment shipment = shipmentRepository.findByShipmentId(shipmentIdentifier)
+                .orElseGet(() -> {
+                    try {
+                        Long id = Long.parseLong(shipmentIdentifier);
+                        return shipmentRepository.findById(id).orElse(null);
+                    } catch (NumberFormatException e) {
+                        return null;
+                    }
+                });
 
-    @GetMapping("/tracking/{bookingNumber}")
-    public ResponseEntity<ApiResponse> getTracking(@PathVariable String bookingNumber) {
-        Booking booking = bookingService.getBookingByNumber(bookingNumber);
+        if (shipment == null) {
+            return ResponseEntity.badRequest().body(new ApiResponse(false, "Shipment not found with identifier: " + shipmentIdentifier, null));
+        }
 
         List<String> timeline = new ArrayList<>();
-        timeline.add("Booking Created");
-        if (booking.getDriver() != null) timeline.add("Driver Assigned");
-        if (booking.getStatus() != BookingStatus.PENDING && booking.getStatus() != BookingStatus.CONFIRMED) {
-            timeline.add("Package Picked Up");
-        }
-        if (booking.getStatus() == BookingStatus.IN_TRANSIT || booking.getStatus() == BookingStatus.OUT_FOR_DELIVERY || booking.getStatus() == BookingStatus.DELIVERED) {
+        timeline.add("Shipment Created");
+        if (shipment.getConfirmedPartnerId() != null) timeline.add("Cargo Partner Assigned");
+        if (shipment.getAssignedDriverId() != null) timeline.add("Driver Dispatched");
+        if (shipment.getStatus() == Shipment.Status.IN_TRANSIT || shipment.getStatus() == Shipment.Status.OUT_FOR_DELIVERY || shipment.getStatus() == Shipment.Status.DELIVERED) {
             timeline.add("In Transit");
         }
-        if (booking.getStatus() == BookingStatus.OUT_FOR_DELIVERY || booking.getStatus() == BookingStatus.DELIVERED) {
+        if (shipment.getStatus() == Shipment.Status.OUT_FOR_DELIVERY || shipment.getStatus() == Shipment.Status.DELIVERED) {
             timeline.add("Out for Delivery");
         }
-        if (booking.getStatus() == BookingStatus.DELIVERED) {
+        if (shipment.getStatus() == Shipment.Status.DELIVERED) {
             timeline.add("Delivered");
         }
 
         Map<String, Object> payload = new LinkedHashMap<>();
-        payload.put("bookingNumber", booking.getBookingNumber());
-        payload.put("status", booking.getStatus());
+        payload.put("shipmentId", shipment.getShipmentId());
+        payload.put("status", shipment.getStatus());
+        payload.put("fareStatus", shipment.getFareStatus());
+        payload.put("origin", shipment.getOrigin());
+        payload.put("destination", shipment.getDestination());
+        payload.put("currentLocation", shipment.getCurrentLocation());
         payload.put("timeline", timeline);
-        payload.put("pickupAddress", booking.getPickupAddress());
-        payload.put("deliveryAddress", booking.getDeliveryAddress());
+        payload.put("assignedDriverName", shipment.getAssignedDriverName());
+        payload.put("assignedDriverPhone", shipment.getAssignedDriverPhone());
 
         return ResponseEntity.ok(new ApiResponse(true, "Tracking data fetched successfully", payload));
     }
