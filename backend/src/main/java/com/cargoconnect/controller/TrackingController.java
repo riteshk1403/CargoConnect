@@ -53,12 +53,12 @@ public class TrackingController {
         payload.put("shipmentId", shipment.getShipmentId());
         payload.put("status", shipment.getStatus());
         payload.put("fareStatus", shipment.getFareStatus());
-        payload.put("origin", shipment.getOrigin());
-        payload.put("destination", shipment.getDestination());
-        payload.put("currentLocation", shipment.getCurrentLocation());
+        payload.put("pickupAddress", shipment.getPickupAddress());
+        payload.put("deliveryAddress", shipment.getDeliveryAddress());
+        payload.put("currentLocation", shipment.getStatus() == Shipment.Status.DELIVERED ? shipment.getDeliveryAddress() : shipment.getPickupAddress());
         payload.put("timeline", timeline);
-        payload.put("assignedDriverName", shipment.getAssignedDriverName());
-        payload.put("assignedDriverPhone", shipment.getAssignedDriverPhone());
+        payload.put("assignedDriverId", shipment.getAssignedDriverId());
+        payload.put("assignedVehicleId", shipment.getAssignedVehicleId());
 
         return ResponseEntity.ok(new ApiResponse(true, "Tracking data fetched successfully", payload));
     }
