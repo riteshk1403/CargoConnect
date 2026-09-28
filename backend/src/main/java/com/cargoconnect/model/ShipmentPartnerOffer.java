@@ -1,7 +1,6 @@
 package com.cargoconnect.model;
 
 import jakarta.persistence.*;
-import lombok.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -10,10 +9,6 @@ import java.time.LocalDateTime;
            @Index(name = "idx_offer_shipment", columnList = "shipmentId"),
            @Index(name = "idx_offer_partner", columnList = "cargoPartnerId")
        })
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class ShipmentPartnerOffer {
     public enum OfferStatus {
         SENT,
@@ -33,14 +28,12 @@ public class ShipmentPartnerOffer {
     @Column(nullable = false)
     private Long cargoPartnerId;
 
-    @Builder.Default
-    private LocalDateTime notifiedAt = LocalDateTime.now();
+        private LocalDateTime notifiedAt = LocalDateTime.now();
 
     private LocalDateTime respondedAt;
 
     @Enumerated(EnumType.STRING)
-    @Builder.Default
-    private OfferStatus status = OfferStatus.SENT;
+        private OfferStatus status = OfferStatus.SENT;
 
     private Integer acceptancePriority; // 1 for first partner who accepted, 2 for second, etc.
 

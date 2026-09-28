@@ -1,14 +1,6 @@
 package com.cargoconnect.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class NearbyVehicleDto {
     private Long vehicleId;
     private String vehicleNumber;

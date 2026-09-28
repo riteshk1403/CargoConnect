@@ -1,9 +1,7 @@
 package com.cargoconnect.dto;
 
 import jakarta.validation.constraints.NotBlank;
-import lombok.Data;
 
-@Data
 public class CallRequestDto {
     private Long customerId;
     private Long shipmentId;

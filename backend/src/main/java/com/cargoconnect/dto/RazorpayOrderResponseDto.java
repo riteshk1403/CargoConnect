@@ -1,14 +1,6 @@
 package com.cargoconnect.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class RazorpayOrderResponseDto {
     private Long settlementId;
     private String orderId;

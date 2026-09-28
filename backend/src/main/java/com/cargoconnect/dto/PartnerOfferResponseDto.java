@@ -1,12 +1,7 @@
 package com.cargoconnect.dto;
 
-import lombok.*;
 import java.time.LocalDateTime;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class PartnerOfferResponseDto {
     private Long offerId;
     private Long shipmentId;

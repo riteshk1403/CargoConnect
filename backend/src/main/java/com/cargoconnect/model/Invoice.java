@@ -1,15 +1,10 @@
 package com.cargoconnect.model;
 
 import jakarta.persistence.*;
-import lombok.*;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "invoices")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class Invoice {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

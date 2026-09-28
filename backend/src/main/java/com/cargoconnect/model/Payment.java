@@ -1,15 +1,10 @@
 package com.cargoconnect.model;
 
 import jakarta.persistence.*;
-import lombok.*;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "payments")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class Payment {
     public enum PaymentMethod {
         ONLINE,

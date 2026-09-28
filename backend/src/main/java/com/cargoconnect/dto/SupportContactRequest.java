@@ -1,15 +1,7 @@
 package com.cargoconnect.dto;
 
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class SupportContactRequest {
     public Boolean getIsActive() { return this.isActive != null ? this.isActive : false; }
 
@@ -22,11 +14,9 @@ public class SupportContactRequest {
     @NotBlank(message = "Phone number is required")
     private String phoneNumber;
 
-    @Builder.Default
-    private Boolean isActive = true;
+        private Boolean isActive = true;
 
-    @Builder.Default
-    private Integer displayOrder = 0;
+        private Integer displayOrder = 0;
 
 
     // --- Standard Constructors ---

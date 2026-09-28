@@ -1,16 +1,11 @@
 package com.cargoconnect.model;
 
 import jakarta.persistence.*;
-import lombok.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "documents")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class DocumentEntity {
     public enum EntityType {
         DRIVER,
@@ -56,8 +51,7 @@ public class DocumentEntity {
     private LocalDate expiryDate;
 
     @Enumerated(EnumType.STRING)
-    @Builder.Default
-    private Status status = Status.PENDING;
+        private Status status = Status.PENDING;
 
     private String rejectionReason;
 

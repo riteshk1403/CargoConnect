@@ -1,15 +1,10 @@
 package com.cargoconnect.model;
 
 import jakarta.persistence.*;
-import lombok.*;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "complaints")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class Complaint {
     public enum Type {
         LATE_DELIVERY,
@@ -44,13 +39,11 @@ public class Complaint {
     private String description;
 
     @Enumerated(EnumType.STRING)
-    @Builder.Default
-    private Status status = Status.PENDING;
+        private Status status = Status.PENDING;
 
     private String actionTaken;
 
-    @Builder.Default
-    private Double refundAmount = 0.0;
+        private Double refundAmount = 0.0;
 
     private LocalDateTime createdAt;
     private LocalDateTime resolvedAt;

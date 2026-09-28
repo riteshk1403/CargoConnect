@@ -1,7 +1,6 @@
 package com.cargoconnect.model;
 
 import jakarta.persistence.*;
-import lombok.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -11,10 +10,6 @@ import java.time.LocalDateTime;
     @Index(name = "idx_settlement_status", columnList = "payment_status"),
     @Index(name = "idx_settlement_order_id", columnList = "payment_order_id")
 })
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class CommissionSettlement {
 
     public enum PaymentStatus {
@@ -55,8 +50,7 @@ public class CommissionSettlement {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "payment_status", length = 50, nullable = false)
-    @Builder.Default
-    private PaymentStatus paymentStatus = PaymentStatus.PENDING;
+        private PaymentStatus paymentStatus = PaymentStatus.PENDING;
 
     @Column(name = "payment_order_id")
     private String paymentOrderId;

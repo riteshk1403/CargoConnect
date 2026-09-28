@@ -1,15 +1,7 @@
 package com.cargoconnect.dto;
 
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class SupportCompanyInfoRequest {
 
     @NotBlank(message = "Company name is required")

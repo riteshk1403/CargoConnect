@@ -2,15 +2,7 @@ package com.cargoconnect.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class SupportSettingRequest {
 
     @NotBlank(message = "Primary support phone number is required")
@@ -23,11 +15,9 @@ public class SupportSettingRequest {
     @Email(message = "Please provide a valid support email address")
     private String supportEmail;
 
-    @Builder.Default
-    private Boolean primaryActive = true;
+        private Boolean primaryActive = true;
 
-    @Builder.Default
-    private Boolean secondaryActive = true;
+        private Boolean secondaryActive = true;
 
 
     // --- Standard Constructors ---

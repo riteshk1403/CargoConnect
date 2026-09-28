@@ -1,15 +1,10 @@
 package com.cargoconnect.model;
 
 import jakarta.persistence.*;
-import lombok.*;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "notifications")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class Notification {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,11 +19,9 @@ public class Notification {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String message;
 
-    @Builder.Default
-    private String type = "INFO"; // INFO, SUCCESS, WARNING, ALERT
+        private String type = "INFO"; // INFO, SUCCESS, WARNING, ALERT
 
-    @Builder.Default
-    private boolean readStatus = false;
+        private boolean readStatus = false;
 
     private String linkUrl;
 

@@ -3,11 +3,9 @@ package com.cargoconnect.dto;
 import com.cargoconnect.model.DocumentEntity.EntityType;
 import com.cargoconnect.model.DocumentEntity.DocumentType;
 import jakarta.validation.constraints.NotNull;
-import lombok.Data;
 
 import java.time.LocalDate;
 
-@Data
 public class DocumentUploadRequest {
     @NotNull(message = "Entity type is required (DRIVER or VEHICLE)")
     private EntityType entityType;

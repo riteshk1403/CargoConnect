@@ -1,15 +1,10 @@
 package com.cargoconnect.model;
 
 import jakarta.persistence.*;
-import lombok.*;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "commission_settings")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class CommissionSetting {
     public enum CommissionType {
         PERCENTAGE
@@ -20,14 +15,11 @@ public class CommissionSetting {
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    @Builder.Default
-    private CommissionType commissionType = CommissionType.PERCENTAGE;
+        private CommissionType commissionType = CommissionType.PERCENTAGE;
 
-    @Builder.Default
-    private Double commissionRate = 10.0; // Default 10%
+        private Double commissionRate = 10.0; // Default 10%
 
-    @Builder.Default
-    private String updatedBy = "admin";
+        private String updatedBy = "admin";
 
     private LocalDateTime updatedAt;
 

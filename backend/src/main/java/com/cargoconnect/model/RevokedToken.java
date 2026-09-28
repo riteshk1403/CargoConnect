@@ -1,7 +1,6 @@
 package com.cargoconnect.model;
 
 import jakarta.persistence.*;
-import lombok.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -9,10 +8,6 @@ import java.time.LocalDateTime;
        indexes = {
            @Index(name = "idx_revoked_token_id", columnList = "tokenId", unique = true)
        })
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class RevokedToken {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

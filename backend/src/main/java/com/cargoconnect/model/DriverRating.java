@@ -1,17 +1,12 @@
 package com.cargoconnect.model;
 
 import jakarta.persistence.*;
-import lombok.*;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "driver_ratings", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"shipmentId"})
 })
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class DriverRating {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

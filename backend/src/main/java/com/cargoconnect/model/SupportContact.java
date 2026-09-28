@@ -1,15 +1,10 @@
 package com.cargoconnect.model;
 
 import jakarta.persistence.*;
-import lombok.*;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "support_contacts")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class SupportContact {
     public Boolean getIsActive() { return this.isActive != null ? this.isActive : false; }
 
@@ -27,12 +22,10 @@ public class SupportContact {
     private String phoneNumber;
 
     @Column(name = "is_active", nullable = false)
-    @Builder.Default
-    private Boolean isActive = true;
+        private Boolean isActive = true;
 
     @Column(name = "display_order")
-    @Builder.Default
-    private Integer displayOrder = 0;
+        private Integer displayOrder = 0;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;

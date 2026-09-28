@@ -1,15 +1,10 @@
 package com.cargoconnect.model;
 
 import jakarta.persistence.*;
-import lombok.*;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "proof_of_delivery")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class ProofOfDelivery {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

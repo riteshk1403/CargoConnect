@@ -1,7 +1,6 @@
 package com.cargoconnect.model;
 
 import jakarta.persistence.*;
-import lombok.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -10,10 +9,6 @@ import java.time.LocalDateTime;
            @Index(name = "idx_user_email", columnList = "email"),
            @Index(name = "idx_user_username", columnList = "username")
        })
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class User {
     public boolean isEmailVerified() { return this.emailVerified; }
     public boolean isActive() { return this.active; }
@@ -37,21 +32,18 @@ public class User {
     @Column(nullable = false)
     private Role role;
 
-    @Builder.Default
-    private boolean emailVerified = false;
+        private boolean emailVerified = false;
 
     // 6-Digit Email Verification OTP fields
     private String verificationOtp;
     private LocalDateTime verificationOtpExpiry;
-    @Builder.Default
-    private int otpAttemptCount = 0;
+        private int otpAttemptCount = 0;
     private LocalDateTime lastOtpSentAt;
 
     // 6-Digit Password Reset OTP fields
     private String passwordResetOtp;
     private LocalDateTime passwordResetOtpExpiry;
-    @Builder.Default
-    private int passwordResetAttemptCount = 0;
+        private int passwordResetAttemptCount = 0;
     private LocalDateTime lastResetOtpSentAt;
 
     // Legacy token field for backward compatibility
@@ -62,8 +54,7 @@ public class User {
     private Long cargoPartnerId;
     private Long driverId;
 
-    @Builder.Default
-    private boolean active = true;
+        private boolean active = true;
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;

@@ -1,7 +1,6 @@
 package com.cargoconnect.model;
 
 import jakarta.persistence.*;
-import lombok.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -13,10 +12,6 @@ import java.time.LocalDateTime;
            @Index(name = "idx_shipment_status", columnList = "status"),
            @Index(name = "idx_shipment_fare_status", columnList = "fareStatus")
        })
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class Shipment {
     public enum ServiceType {
         NORMAL,
@@ -98,19 +93,16 @@ public class Shipment {
     private LocalDate deliveryDate;
 
     @Enumerated(EnumType.STRING)
-    @Builder.Default
-    private ServiceType serviceType = ServiceType.NORMAL;
+        private ServiceType serviceType = ServiceType.NORMAL;
 
     @Enumerated(EnumType.STRING)
-    @Builder.Default
-    private Status status = Status.PENDING_ASSIGNMENT;
+        private Status status = Status.PENDING_ASSIGNMENT;
 
     // Manual Quotation fields
     private Double fare; // Set manually by CargoConnect Team
 
     @Enumerated(EnumType.STRING)
-    @Builder.Default
-    private FareStatus fareStatus = FareStatus.PENDING;
+        private FareStatus fareStatus = FareStatus.PENDING;
 
     private String fareSetBy;
     private LocalDateTime fareSetAt;
@@ -136,12 +128,10 @@ public class Shipment {
     private LocalDateTime confirmedAt;
 
     @Enumerated(EnumType.STRING)
-    @Builder.Default
-    private PaymentMethod paymentMethod = PaymentMethod.ONLINE;
+        private PaymentMethod paymentMethod = PaymentMethod.ONLINE;
 
     @Enumerated(EnumType.STRING)
-    @Builder.Default
-    private PaymentStatus paymentStatus = PaymentStatus.PENDING;
+        private PaymentStatus paymentStatus = PaymentStatus.PENDING;
 
     private String deliveryOtp; // 4-digit OTP for Proof of Delivery verification
 
@@ -152,8 +142,7 @@ public class Shipment {
     @Column(columnDefinition = "TEXT")
     private String cargoPhotoUrl; // Photo URL or Base64 sample
 
-    @Builder.Default
-    private Double cancellationFee = 0.0;
+        private Double cancellationFee = 0.0;
 
     private String routeCity;
     private String notes;

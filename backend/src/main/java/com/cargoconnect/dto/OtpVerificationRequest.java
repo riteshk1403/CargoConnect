@@ -1,9 +1,7 @@
 package com.cargoconnect.dto;
 
 import jakarta.validation.constraints.NotBlank;
-import lombok.Data;
 
-@Data
 public class OtpVerificationRequest {
     @NotBlank(message = "OTP is required to verify delivery")
     private String otp;

@@ -1,14 +1,9 @@
 package com.cargoconnect.model;
 
 import jakarta.persistence.*;
-import lombok.*;
 
 @Entity
 @Table(name = "customers")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class Customer {
     public void setCorporate(boolean isCorporate) { this.isCorporate = isCorporate; }
 
@@ -28,14 +23,11 @@ public class Customer {
     private String companyName;
     private String address;
 
-    @Builder.Default
-    private boolean isCorporate = false;
+        private boolean isCorporate = false;
 
-    @Builder.Default
-    private Double creditLimit = 0.0;
+        private Double creditLimit = 0.0;
 
-    @Builder.Default
-    private Double outstandingBalance = 0.0;
+        private Double outstandingBalance = 0.0;
 
 
     // --- Standard Constructors ---
