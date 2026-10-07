@@ -1,13 +1,22 @@
 import axios from 'axios';
 
-// Resolve API base URL: Uses VITE_API_URL in production, or falls back to '/api' for local Vite dev proxy
+// Resolve API base URL:
+// 1. If VITE_API_URL is explicitly set, use that.
+// 2. If running locally (localhost / 127.0.0.1 / Wi-Fi IP), use '/api' (Vite dev proxy -> localhost:8080).
+// 3. In cloud production (Vercel), default automatically to the live Render backend.
 const getBaseUrl = () => {
   const envUrl = import.meta.env.VITE_API_URL;
   if (envUrl && envUrl.trim() !== '') {
     const trimmed = envUrl.trim().replace(/\/+$/, '');
     return trimmed.endsWith('/api') ? trimmed : `${trimmed}/api`;
   }
-  return '/api';
+  if (typeof window !== 'undefined') {
+    const host = window.location.hostname;
+    if (host === 'localhost' || host === '127.0.0.1' || host.startsWith('192.168.') || host.startsWith('10.') || host.startsWith('172.')) {
+      return '/api';
+    }
+  }
+  return 'https://cargoconnect-backend.onrender.com/api';
 };
 
 const api = axios.create({
