@@ -102,12 +102,14 @@ const Login = () => {
         navigate('/shipper/dashboard');
       }
     } catch (err) {
-      let msg = err.message || 'Authentication failed.';
-      if (msg.toLowerCase().includes('network error')) {
-        msg = 'Unable to connect to backend server. If you are running locally, please ensure the backend is active on port 8080.';
+      let msg = err.response?.data?.message || err.message || 'Authentication failed.';
+      if (err.response?.status === 405 || (typeof msg === 'string' && msg.includes('405'))) {
+        msg = 'Error 405: Backend API URL not connected. Please set VITE_API_URL in Vercel Settings -> Environment Variables to your Render backend URL.';
+      } else if (typeof msg === 'string' && msg.toLowerCase().includes('network error')) {
+        msg = 'Unable to connect to backend server. If running locally, check port 8080. If on Vercel, verify your Render backend URL.';
       }
       setError(msg);
-      if (err.isUnverified || msg.toLowerCase().includes('verify')) {
+      if (err.isUnverified || (typeof msg === 'string' && msg.toLowerCase().includes('verify'))) {
         setUnverifiedEmail(identifier.includes('@') ? identifier : '');
       }
     } finally {
@@ -138,7 +140,11 @@ const Login = () => {
         navigate(`/verify-email?email=${encodeURIComponent(registerData.email)}`);
       }, 1000);
     } catch (err) {
-      setError(err.response?.data?.message || 'Registration failed.');
+      let msg = err.response?.data?.message || err.message || 'Registration failed.';
+      if (err.response?.status === 405 || (typeof msg === 'string' && msg.includes('405'))) {
+        msg = 'Error 405: Backend API URL not connected. Please set VITE_API_URL in Vercel Settings -> Environment Variables to your Render backend URL.';
+      }
+      setError(msg);
     } finally {
       setLoading(false);
     }
