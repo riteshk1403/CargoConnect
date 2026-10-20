@@ -109,7 +109,11 @@ const Login = () => {
       }
     } catch (err) {
       let msg = err.response?.data?.message || err.message || 'Authentication failed.';
-      if (err.response?.status === 405 || (typeof msg === 'string' && msg.includes('405'))) {
+      if (err.response?.status === 502 || (typeof msg === 'string' && msg.includes('502'))) {
+        msg = 'Server Starting (502 Bad Gateway): The backend server is currently spinning up or waking from sleep. Please wait a moment and click Sign In again!';
+      } else if (err.response?.status === 504 || (typeof msg === 'string' && msg.includes('504'))) {
+        msg = 'Gateway Timeout (504): Server took too long to respond. The cloud backend may be booting up. Please retry in a few moments.';
+      } else if (err.response?.status === 405 || (typeof msg === 'string' && msg.includes('405'))) {
         msg = 'Error 405: Backend API URL not connected. Please set VITE_API_URL in Vercel Settings -> Environment Variables to your Render backend URL.';
       } else if (typeof msg === 'string' && msg.toLowerCase().includes('network error')) {
         msg = 'Unable to connect to backend server. If running locally, check port 8080. If on Vercel, verify your Render backend URL.';
@@ -147,7 +151,9 @@ const Login = () => {
       }, 1000);
     } catch (err) {
       let msg = err.response?.data?.message || err.message || 'Registration failed.';
-      if (err.response?.status === 405 || (typeof msg === 'string' && msg.includes('405'))) {
+      if (err.response?.status === 502 || (typeof msg === 'string' && msg.includes('502'))) {
+        msg = 'Server Starting (502 Bad Gateway): The backend server is waking up. Please wait 15 seconds and try again.';
+      } else if (err.response?.status === 405 || (typeof msg === 'string' && msg.includes('405'))) {
         msg = 'Error 405: Backend API URL not connected. Please set VITE_API_URL in Vercel Settings -> Environment Variables to your Render backend URL.';
       }
       setError(msg);
