@@ -24,7 +24,12 @@ import {
   Award,
   Zap,
   Layers,
-  HelpCircle
+  HelpCircle,
+  Radio,
+  Compass,
+  Boxes,
+  Shield,
+  BadgeCheck
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -85,19 +90,32 @@ export default function HomePage() {
 
       <main className="flex-grow">
         {/* ========================================================================= */}
-        {/* 1. HERO SECTION WITH ENTERPRISE AESTHETICS & INTERACTIVE TOOL CARD       */}
+        {/* 1. HERO SECTION WITH REAL-WORLD LOGISTICS BACKGROUND & TELEMETRY TOOL     */}
         {/* ========================================================================= */}
-        <section className="relative pt-12 pb-20 lg:pt-20 lg:pb-32 overflow-hidden border-b border-slate-900">
-          {/* Subtle Dynamic Gradients & Mesh Glow */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[500px] bg-gradient-to-b from-brand-600/15 via-indigo-600/10 to-transparent blur-3xl pointer-events-none" />
-          <div className="absolute -top-40 right-0 w-96 h-96 bg-brand-500/10 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute top-60 -left-40 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
+        <section className="relative pt-12 pb-20 lg:pt-24 lg:pb-36 overflow-hidden border-b border-slate-900">
+          
+          {/* Real-world high-resolution commercial logistics photography background */}
+          <div 
+            className="absolute inset-0 bg-cover bg-center opacity-40 scale-105 pointer-events-none transition-all duration-1000"
+            style={{
+              backgroundImage: `url('https://images.unsplash.com/photo-1519003722824-194d4455a60c?q=80&w=2000&auto=format&fit=crop')`
+            }}
+          />
 
-          {/* Faint Grid Texture */}
+          {/* Deep atmospheric gradient overlays for perfect text contrast and modern aesthetic */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/90 to-slate-950/80 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/70 pointer-events-none" />
+          <div className="absolute inset-0 bg-brand-950/25 mix-blend-color pointer-events-none" />
+
+          {/* Glowing Ambient Mesh Accents */}
+          <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-brand-600/15 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute bottom-10 right-10 w-[400px] h-[400px] bg-indigo-600/10 rounded-full blur-3xl pointer-events-none" />
+
+          {/* Subtle Grid Lines Overlay */}
           <div 
             className="absolute inset-0 pointer-events-none opacity-10"
             style={{
-              backgroundImage: 'radial-gradient(rgba(255, 255, 255, 0.25) 1px, transparent 1px)',
+              backgroundImage: 'radial-gradient(rgba(255, 255, 255, 0.3) 1px, transparent 1px)',
               backgroundSize: '32px 32px'
             }}
           />
@@ -108,35 +126,35 @@ export default function HomePage() {
               {/* Left Column: Value Proposition & CTAs (7 Cols) */}
               <div className="lg:col-span-7 space-y-6 sm:space-y-8 text-center lg:text-left">
                 
-                {/* Enterprise Live Badge */}
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-800 text-xs text-slate-300 shadow-inner">
-                  <span className="flex h-2 w-2 relative">
+                {/* Enterprise Live Gateway Status Pill */}
+                <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-slate-900/90 backdrop-blur-xl border border-slate-700/80 text-xs text-slate-300 shadow-xl shadow-black/40">
+                  <span className="flex h-2.5 w-2.5 relative">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
                   </span>
-                  <span className="font-semibold text-emerald-400">Live Logistics Gateway</span>
+                  <span className="font-bold text-emerald-400">Live Logistics Gateway</span>
                   <span className="text-slate-600">•</span>
-                  <span className="text-slate-400">Pune & Maharashtra Regional Network</span>
+                  <span className="text-slate-300 font-medium">Maharashtra & Inter-State Freight Network</span>
                 </div>
 
                 {/* Primary Hero Headline */}
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.12]">
                   Commercial Freight.<br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 via-indigo-400 to-emerald-400">
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 via-sky-300 to-emerald-400">
                     Transparent, Fast & Verified.
                   </span>
                 </h1>
 
                 {/* Subtitle */}
                 <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed max-w-2xl mx-auto lg:mx-0">
-                  Connect directly with verified fleet owners across major industrial corridors. Real-time GPS tracking, automated quotation bidding, instant driver assignment, and transparent settlements.
+                  Direct connection between verified manufacturers and fleet operators across Maharashtra's busiest industrial corridors. Real-time GPS telematics, transparent reverse bidding, instant driver dispatch, and GST-compliant e-PODs.
                 </p>
 
                 {/* Action CTA Buttons */}
-                <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5 pt-2">
+                <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
                   <Link
                     to="/login?tab=register"
-                    className="w-full sm:w-auto px-7 py-3.5 rounded-2xl bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-500 hover:to-indigo-500 text-white font-bold text-sm shadow-xl shadow-brand-600/30 hover:shadow-brand-600/40 transition-all flex items-center justify-center gap-2 group active:scale-95"
+                    className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-500 hover:to-indigo-500 text-white font-bold text-sm shadow-xl shadow-brand-600/30 hover:shadow-brand-600/40 transition-all flex items-center justify-center gap-2.5 group active:scale-95"
                   >
                     <span>Book Your First Freight</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -144,60 +162,84 @@ export default function HomePage() {
 
                   <a
                     href="#calculator"
-                    className="w-full sm:w-auto px-6 py-3.5 rounded-2xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-200 hover:text-white font-semibold text-sm transition-all flex items-center justify-center gap-2"
+                    className="w-full sm:w-auto px-7 py-4 rounded-2xl bg-slate-900/90 hover:bg-slate-800 backdrop-blur-xl border border-slate-700 text-slate-200 hover:text-white font-semibold text-sm transition-all flex items-center justify-center gap-2 shadow-lg"
                   >
                     <Calculator className="w-4 h-4 text-brand-400" />
                     <span>Instant Rate Calculator</span>
                   </a>
                 </div>
 
+                {/* Industrial Corridors Ticker */}
+                <div className="pt-2">
+                  <span className="text-[11px] uppercase tracking-wider font-bold text-slate-400 block mb-2 text-center lg:text-left">
+                    High-Frequency Industrial Corridors:
+                  </span>
+                  <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2 text-xs">
+                    <span className="px-3 py-1.5 rounded-xl bg-slate-900/80 border border-slate-800 text-slate-300 flex items-center gap-1.5">
+                      <MapPin className="w-3.5 h-3.5 text-brand-400" />
+                      Pune (Chakan MIDC) ➔ Mumbai (JNPT Port)
+                    </span>
+                    <span className="px-3 py-1.5 rounded-xl bg-slate-900/80 border border-slate-800 text-slate-300 flex items-center gap-1.5">
+                      <MapPin className="w-3.5 h-3.5 text-brand-400" />
+                      Pune (Hinjewadi) ➔ Bengaluru
+                    </span>
+                    <span className="px-3 py-1.5 rounded-xl bg-slate-900/80 border border-slate-800 text-slate-300 flex items-center gap-1.5">
+                      <MapPin className="w-3.5 h-3.5 text-brand-400" />
+                      Pune (Bhosari) ➔ Nashik MIDC
+                    </span>
+                  </div>
+                </div>
+
                 {/* Trust Badges */}
-                <div className="pt-4 border-t border-slate-900/80 flex flex-wrap items-center justify-center lg:justify-start gap-6 text-xs text-slate-400">
+                <div className="pt-4 border-t border-slate-800/80 flex flex-wrap items-center justify-center lg:justify-start gap-6 text-xs text-slate-400">
                   <div className="flex items-center gap-2">
                     <ShieldCheck className="w-4 h-4 text-emerald-400" />
-                    <span>100% Verified Fleet Owners</span>
+                    <span>100% KYC & VAHAN Verified Fleets</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Zap className="w-4 h-4 text-amber-400" />
-                    <span>Dynamic Marketplace Bidding</span>
+                    <span>Zero Brokerage Marketplace</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Award className="w-4 h-4 text-brand-400" />
-                    <span>GST Invoices & e-POD</span>
+                    <span>Automated GST & e-Way Bill</span>
                   </div>
                 </div>
               </div>
 
               {/* Right Column: Interactive Instant Rate & Tracking Tool (5 Cols) */}
               <div className="lg:col-span-5" id="calculator">
-                <div className="bg-slate-900/90 backdrop-blur-2xl rounded-3xl border border-slate-800 shadow-2xl shadow-black/80 overflow-hidden">
+                <div className="bg-slate-900/95 backdrop-blur-2xl rounded-3xl border border-slate-700/80 shadow-2xl shadow-black/90 overflow-hidden relative">
                   
+                  {/* Subtle top card glow */}
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-500 via-indigo-500 to-emerald-400" />
+
                   {/* Tool Header Tabs */}
-                  <div className="flex border-b border-slate-800 bg-slate-950/60 p-1.5 gap-1.5">
+                  <div className="flex border-b border-slate-800 bg-slate-950/80 p-2 gap-2">
                     <button
                       type="button"
                       onClick={() => setActiveWidgetTab('calculator')}
-                      className={`flex-1 py-2.5 rounded-2xl text-xs font-bold flex items-center justify-center gap-2 transition-all ${
+                      className={`flex-1 py-3 rounded-2xl text-xs font-bold flex items-center justify-center gap-2 transition-all ${
                         activeWidgetTab === 'calculator'
-                          ? 'bg-brand-600 text-white shadow-md shadow-brand-600/25'
+                          ? 'bg-brand-600 text-white shadow-lg shadow-brand-600/30'
                           : 'text-slate-400 hover:text-white hover:bg-slate-900'
                       }`}
                     >
-                      <Calculator className="w-3.5 h-3.5" />
-                      <span>Rate Estimator</span>
+                      <Calculator className="w-4 h-4" />
+                      <span>Freight Rate Estimator</span>
                     </button>
 
                     <button
                       type="button"
                       onClick={() => setActiveWidgetTab('tracker')}
-                      className={`flex-1 py-2.5 rounded-2xl text-xs font-bold flex items-center justify-center gap-2 transition-all ${
+                      className={`flex-1 py-3 rounded-2xl text-xs font-bold flex items-center justify-center gap-2 transition-all ${
                         activeWidgetTab === 'tracker'
-                          ? 'bg-brand-600 text-white shadow-md shadow-brand-600/25'
+                          ? 'bg-brand-600 text-white shadow-lg shadow-brand-600/30'
                           : 'text-slate-400 hover:text-white hover:bg-slate-900'
                       }`}
                     >
-                      <Search className="w-3.5 h-3.5" />
-                      <span>Live Tracker</span>
+                      <Search className="w-4 h-4" />
+                      <span>Live Telemetry Tracker</span>
                     </button>
                   </div>
 
@@ -211,7 +253,7 @@ export default function HomePage() {
                         <select
                           value={origin}
                           onChange={(e) => { setOrigin(e.target.value); setIsCalculated(true); }}
-                          className="w-full bg-slate-950 border border-slate-800 rounded-xl py-2 px-3 text-xs text-white focus:outline-none focus:border-brand-500 transition-colors"
+                          className="w-full bg-slate-950 border border-slate-800 rounded-xl py-2.5 px-3.5 text-xs text-white focus:outline-none focus:border-brand-500 transition-colors"
                         >
                           <option>Pune (Pashan / Hinjewadi Hub)</option>
                           <option>Pune (Chakan Auto Cluster)</option>
@@ -227,7 +269,7 @@ export default function HomePage() {
                         <select
                           value={destination}
                           onChange={(e) => { setDestination(e.target.value); setIsCalculated(true); }}
-                          className="w-full bg-slate-950 border border-slate-800 rounded-xl py-2 px-3 text-xs text-white focus:outline-none focus:border-brand-500 transition-colors"
+                          className="w-full bg-slate-950 border border-slate-800 rounded-xl py-2.5 px-3.5 text-xs text-white focus:outline-none focus:border-brand-500 transition-colors"
                         >
                           <option>Mumbai (JNPT Port / Navi Mumbai)</option>
                           <option>Mumbai (Andheri / Commercial Hub)</option>
@@ -245,7 +287,7 @@ export default function HomePage() {
                         <select
                           value={truckType}
                           onChange={(e) => { setTruckType(e.target.value); setIsCalculated(true); }}
-                          className="w-full bg-slate-950 border border-slate-800 rounded-xl py-2 px-3 text-xs text-white focus:outline-none focus:border-brand-500 transition-colors"
+                          className="w-full bg-slate-950 border border-slate-800 rounded-xl py-2.5 px-3.5 text-xs text-white focus:outline-none focus:border-brand-500 transition-colors"
                         >
                           <option>Tata Ace (1.2 Ton - City Dispatch)</option>
                           <option>14 FT Truck (3.5 Ton - Mid Freight)</option>
@@ -255,16 +297,16 @@ export default function HomePage() {
                       </div>
 
                       {/* Estimated Fare Display Box */}
-                      <div className="mt-4 p-4 rounded-2xl bg-slate-950/80 border border-slate-800 space-y-2">
+                      <div className="mt-4 p-4 rounded-2xl bg-slate-950/90 border border-slate-800 space-y-2">
                         <div className="flex items-center justify-between text-xs text-slate-400">
                           <span>Corridor Distance:</span>
                           <span className="font-semibold text-white">~{rate.distance} km</span>
                         </div>
                         <div className="flex items-center justify-between text-xs text-slate-400">
-                          <span>Market Benchmark Rate:</span>
-                          <span className="text-sm font-black text-brand-400">₹{rate.total.toLocaleString('en-IN')}</span>
+                          <span>Benchmark Market Fare:</span>
+                          <span className="text-base font-black text-brand-400">₹{rate.total.toLocaleString('en-IN')}</span>
                         </div>
-                        <div className="flex items-center justify-between text-[11px] text-slate-500 pt-1 border-t border-slate-900">
+                        <div className="flex items-center justify-between text-[11px] text-slate-500 pt-1.5 border-t border-slate-900">
                           <span>Platform Commission (10%):</span>
                           <span>₹{rate.commission.toLocaleString('en-IN')}</span>
                         </div>
@@ -273,7 +315,7 @@ export default function HomePage() {
                       <button
                         type="button"
                         onClick={() => navigate('/login?tab=register')}
-                        className="w-full py-3 bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-500 hover:to-indigo-500 text-white font-bold rounded-xl text-xs flex items-center justify-center gap-2 shadow-lg shadow-brand-600/25 transition-all"
+                        className="w-full py-3.5 bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-500 hover:to-indigo-500 text-white font-bold rounded-xl text-xs flex items-center justify-center gap-2 shadow-lg shadow-brand-600/25 transition-all"
                       >
                         <span>Dispatch This Truck</span>
                         <ArrowRight className="w-3.5 h-3.5" />
@@ -286,7 +328,7 @@ export default function HomePage() {
                     <div className="p-6 sm:p-7 space-y-4">
                       <form onSubmit={handleTrackSubmit} className="space-y-3">
                         <label className="block text-xs font-semibold text-slate-300">
-                          Enter Waybill or Tracking Code
+                          Enter Waybill or Consignment Number
                         </label>
                         <div className="flex gap-2">
                           <input
@@ -294,11 +336,11 @@ export default function HomePage() {
                             placeholder="e.g. CC-PUN-9042"
                             value={trackingInput}
                             onChange={(e) => setTrackingInput(e.target.value)}
-                            className="flex-1 bg-slate-950 border border-slate-800 rounded-xl py-2.5 px-3.5 text-xs text-white placeholder:text-slate-600 focus:outline-none focus:border-brand-500"
+                            className="flex-1 bg-slate-950 border border-slate-800 rounded-xl py-3 px-3.5 text-xs text-white placeholder:text-slate-600 focus:outline-none focus:border-brand-500"
                           />
                           <button
                             type="submit"
-                            className="px-4 py-2.5 bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs rounded-xl transition-colors shrink-0"
+                            className="px-5 py-3 bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs rounded-xl transition-colors shrink-0"
                           >
                             Track
                           </button>
@@ -312,7 +354,7 @@ export default function HomePage() {
                               {trackedShipment.trackingNumber}
                             </span>
                             <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
-                              In Transit
+                              IN TRANSIT
                             </span>
                           </div>
 
@@ -325,8 +367,8 @@ export default function HomePage() {
                               />
                             </div>
                             <div className="flex justify-between text-[10px] text-slate-500 font-mono">
-                              <span>Pune Hub</span>
-                              <span>Mumbai JNPT</span>
+                              <span>Pune Pashan Hub</span>
+                              <span>Mumbai JNPT Port</span>
                             </div>
                           </div>
 
@@ -363,22 +405,22 @@ export default function HomePage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
               
-              <div className="p-4 rounded-2xl bg-slate-950/60 border border-slate-800/80 text-center">
+              <div className="p-5 rounded-2xl bg-slate-950/80 border border-slate-800/80 text-center">
                 <span className="text-2xl sm:text-3xl font-black text-white tracking-tight">₹4.8 Cr+</span>
                 <span className="block text-xs font-semibold text-slate-400 mt-1">Freight Dispatched</span>
               </div>
 
-              <div className="p-4 rounded-2xl bg-slate-950/60 border border-slate-800/80 text-center">
+              <div className="p-5 rounded-2xl bg-slate-950/80 border border-slate-800/80 text-center">
                 <span className="text-2xl sm:text-3xl font-black text-brand-400 tracking-tight">12,850+</span>
                 <span className="block text-xs font-semibold text-slate-400 mt-1">Completed Consignments</span>
               </div>
 
-              <div className="p-4 rounded-2xl bg-slate-950/60 border border-slate-800/80 text-center">
+              <div className="p-5 rounded-2xl bg-slate-950/80 border border-slate-800/80 text-center">
                 <span className="text-2xl sm:text-3xl font-black text-emerald-400 tracking-tight">99.2%</span>
                 <span className="block text-xs font-semibold text-slate-400 mt-1">On-Time Delivery SLA</span>
               </div>
 
-              <div className="p-4 rounded-2xl bg-slate-950/60 border border-slate-800/80 text-center">
+              <div className="p-5 rounded-2xl bg-slate-950/80 border border-slate-800/80 text-center">
                 <span className="text-2xl sm:text-3xl font-black text-indigo-400 tracking-tight">450+</span>
                 <span className="block text-xs font-semibold text-slate-400 mt-1">Verified Fleet Partners</span>
               </div>

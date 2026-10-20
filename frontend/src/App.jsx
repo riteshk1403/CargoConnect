@@ -91,8 +91,8 @@ function App() {
           <Route path="/contact-us" element={<Contact />} />
           <Route path="/about" element={<Contact />} />
 
-          {/* Root Redirect */}
-          <Route path="/" element={<RootRedirect />} />
+          {/* Root Path - Always show Welcome HomePage */}
+          <Route path="/" element={<HomePage />} />
 
           {/* ================= ADMIN & EMPLOYEE PORTAL ================= */}
           <Route path="/admin/dashboard" element={
