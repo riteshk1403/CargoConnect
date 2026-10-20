@@ -4,6 +4,7 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
 
 // Public Auth & Informational Pages
+import HomePage from './pages/HomePage';
 import Login from './pages/Login';
 import VerifyEmail from './pages/VerifyEmail';
 import ForgotPassword from './pages/ForgotPassword';
@@ -53,7 +54,7 @@ const RootRedirect = () => {
     );
   }
 
-  if (!user) return <Navigate to="/login" replace />;
+  if (!user) return <HomePage />;
   if (user.emailVerified === false) {
     return <Navigate to={`/verify-email?email=${encodeURIComponent(user.email || '')}`} replace />;
   }
@@ -75,7 +76,10 @@ function App() {
       <Router>
         <Routes>
           {/* Public Authentication & Informational Routes */}
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/landing" element={<HomePage />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Login />} />
           <Route path="/verify-email" element={<VerifyEmail />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password" element={<ForgotPassword />} />
