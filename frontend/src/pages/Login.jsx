@@ -78,6 +78,16 @@ const Login = () => {
     }
   }, [verifyToken]);
 
+  // Handle expired/invalid session redirect
+  const isExpired = searchParams.get('expired') || searchParams.get('session_expired');
+  useEffect(() => {
+    if (isExpired) {
+      setError('Previous session expired or was unauthorized (403 Forbidden). Stale session cleared — please sign in.');
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+    }
+  }, [isExpired]);
+
   // Password rules validation for registration
   const regPassword = registerData.password || '';
   const hasMinLen = regPassword.length >= 6;
@@ -526,6 +536,22 @@ const Login = () => {
                     className="py-2 px-2.5 bg-slate-900 hover:bg-slate-800 border border-slate-800 rounded-xl text-xs text-slate-200 font-medium transition-colors text-center flex items-center justify-center gap-1.5"
                   >
                     <span>🚛 Partner Demo</span>
+                  </button>
+                </div>
+                <div className="mt-2 text-center">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      localStorage.removeItem('token');
+                      localStorage.removeItem('user');
+                      setIdentifier('');
+                      setPassword('');
+                      setError('');
+                      setSuccessMsg('Stored tokens and session cleared. Ready to sign in.');
+                    }}
+                    className="text-[11px] text-slate-400 hover:text-rose-400 transition-colors underline underline-offset-2"
+                  >
+                    Reset & Clear Stored Session (Fix 403 / 401 errors)
                   </button>
                 </div>
               </div>

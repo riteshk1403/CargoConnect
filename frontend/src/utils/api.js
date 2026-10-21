@@ -43,15 +43,24 @@ api.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-// Response interceptor: handle 401 Unauthorized by clearing stale session & redirecting to login
+// Response interceptor: handle 401 Unauthorized & 403 Forbidden by clearing stale session
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response && error.response.status === 401) {
+    const status = error.response ? error.response.status : null;
+    const isAuthEndpoint = error.config?.url && (
+      error.config.url.includes('/auth/login') || 
+      error.config.url.includes('/auth/register') ||
+      error.config.url.includes('/auth/verify-email') ||
+      error.config.url.includes('/auth/forgot-password')
+    );
+
+    if ((status === 401 || status === 403) && !isAuthEndpoint) {
+      console.warn(`[CargoConnect API] Stale or forbidden token detected (${status}). Clearing session.`);
       localStorage.removeItem('token');
       localStorage.removeItem('user');
-      if (window.location.pathname !== '/login') {
-        window.location.href = '/login';
+      if (typeof window !== 'undefined' && window.location.pathname !== '/login') {
+        window.location.href = '/login?expired=true';
       }
     }
     return Promise.reject(error);
